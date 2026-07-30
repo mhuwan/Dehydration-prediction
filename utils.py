@@ -533,7 +533,7 @@ def render_sidebar_info(accuracy: float, dataset_info: dict, model_info: dict):
         st.markdown("---")
         st.markdown("### 📊 Model Information")
         st.markdown(f"""
-        - **Algorithm:** Support Vector Machine (SVC)
+        - **Algorithm:** Support Vector Machine (SVM)
         - **Kernel:** RBF
         - **Accuracy:** `{accuracy:.2%}`
         - **Status:** ✅ Ready
