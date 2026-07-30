@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Data & Model (don't commit large files)
+data/
+model/
+*.joblib
+*.csv
+
+# Kaggle
+.kaggle/
+kaggle.json
+
+# OS
+.DS_Store
+Thumbs.db
