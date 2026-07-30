@@ -15,12 +15,6 @@ env/
 .idea/
 *.swp
 
-# Data & Model (don't commit large files)
-data/
-model/
-*.joblib
-*.csv
-
 # Kaggle
 .kaggle/
 kaggle.json
