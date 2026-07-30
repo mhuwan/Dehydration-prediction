@@ -318,7 +318,7 @@ def encode_features(df: pd.DataFrame, fit: bool = False, encoder=None):
 # UI Helpers
 # =========================
 def inject_custom_css():
-    """Inject custom CSS สำหรับ UI สวยงาม โทนสีฟ้า"""
+    """Inject custom CSS สำหรับ UI สวยงาม โทนสีฟ้า พร้อมแก้ปัญหาพื้นหลังเละและ Dark Mode"""
     st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -328,8 +328,20 @@ def inject_custom_css():
         font-family: 'Poppins', sans-serif;
     }
 
+    /* 1. จัดการพื้นหลังหลักและบังคับสีตัวอักษรทั่วไป ป้องกันปัญหา Dark Mode */
     .stApp {
         background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+    }
+    .stApp, .stApp p, .stApp span, .stApp div {
+        color: #1E293B !important; 
+    }
+
+    /* 2. ทำให้ Header และ Container พื้นฐานโปร่งใส เพื่อให้โชว์ Gradient ได้เต็มที่ */
+    header[data-testid="stHeader"] {
+        background-color: transparent !important;
+    }
+    .main .block-container {
+        background-color: transparent !important;
     }
 
     /* Header */
@@ -376,11 +388,13 @@ def inject_custom_css():
         transform: translateY(-3px);
         box-shadow: 0 8px 30px rgba(37, 99, 235, 0.15);
     }
+    .card p, .card h1, .card h2, .card h3 {
+        color: #1E293B !important;
+    }
 
     /* Result Card */
     .result-normal {
         background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
-        color: white;
         padding: 2rem;
         border-radius: 20px;
         text-align: center;
@@ -389,7 +403,6 @@ def inject_custom_css():
     }
     .result-dehydrated {
         background: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
-        color: white;
         padding: 2rem;
         border-radius: 20px;
         text-align: center;
@@ -418,11 +431,11 @@ def inject_custom_css():
     .metric-box .value {
         font-size: 1.8rem;
         font-weight: 700;
-        color: #2563EB;
+        color: #2563EB !important;
     }
     .metric-box .label {
         font-size: 0.85rem;
-        color: #64748B;
+        color: #64748B !important;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
@@ -444,6 +457,9 @@ def inject_custom_css():
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
     }
+    .stButton > button * {
+        color: white !important; /* ป้องกันข้อความในปุ่มเปลี่ยนสี */
+    }
 
     /* Sidebar */
     [data-testid="stSidebar"] {
@@ -451,6 +467,9 @@ def inject_custom_css():
     }
     [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
         color: #1E40AF !important;
+    }
+    [data-testid="stSidebar"] .stMarkdown p {
+        color: #1E293B !important;
     }
 
     /* Recommendation Box */
@@ -461,8 +480,11 @@ def inject_custom_css():
         border-radius: 10px;
         margin-top: 1rem;
     }
+    .recommendation p {
+        color: #1E293B !important;
+    }
     .recommendation strong {
-        color: #1E40AF;
+        color: #1E40AF !important;
     }
 
     /* Animations */
@@ -481,6 +503,9 @@ def inject_custom_css():
 
     /* Hide default streamlit footer */
     footer { visibility: hidden; }
+    
+    /* ซ่อนเมนูจุด 3 จุด (ถ้าต้องการ) */
+    /* #MainMenu {visibility: hidden;} */
     </style>
     """, unsafe_allow_html=True)
 
