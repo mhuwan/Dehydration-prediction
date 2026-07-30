@@ -481,7 +481,6 @@ def inject_custom_css():
 
     /* Hide default streamlit footer */
     footer { visibility: hidden; }
-    #MainMenu { visibility: hidden; }
     </style>
     """, unsafe_allow_html=True)
 
